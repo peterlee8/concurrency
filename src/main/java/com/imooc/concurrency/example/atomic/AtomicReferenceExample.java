@@ -27,7 +27,7 @@ public class AtomicReferenceExample {
     public  static AtomicReference<Integer> count=  new AtomicReference(0) ;
 
     public static void main(String[] args) throws InterruptedException {
-        count.compareAndSet(0,1); //count =1
+        count.compareAndSet(0,1); //count=1
         count.compareAndSet(0,2); //count=1
         count.compareAndSet(1,3); //count=3
         count.compareAndSet(2,4); //count=3
