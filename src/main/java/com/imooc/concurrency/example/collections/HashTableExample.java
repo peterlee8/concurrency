@@ -1,14 +1,16 @@
-package com.imooc.concurrency.example.atomic;
+package com.imooc.concurrency.example.collections;
 
 import com.imooc.concurrency.annotations.ThreadSafe;
+import com.imooc.concurrency.annotations.ThreadUnSafe;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.LongAdder;
 
 /**
  * @Author peterlee
@@ -17,14 +19,14 @@ import java.util.concurrent.atomic.LongAdder;
  */
 @Slf4j
 @ThreadSafe
-public class LongAdderExample {
+public class HashTableExample {
 
     //总的请求数量
     public  static int clientTotal =5000;
     //同时并发的线程数量
     public  static int threadTotal =200;
     //计数器
-    public  static LongAdder count=  new LongAdder() ;
+    public  static Map<Integer,Integer> table=  new Hashtable<>() ;
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -33,11 +35,12 @@ public class LongAdderExample {
         //计数器闭锁
         final CountDownLatch countDownLatch =new CountDownLatch(clientTotal);
         for (int i = 0; i <clientTotal ; i++) {
+            final int count =i;
             executorService.execute(()->{
                 try {
                     //判断当前并发是否超过指定最大值，超过->等待
                     semaphore.acquire();
-                    add();
+                    add(count);
                     //释放线程
                     semaphore.release();
                 } catch (Exception e) {
@@ -51,11 +54,11 @@ public class LongAdderExample {
         countDownLatch.await();
         //关闭线程池
         executorService.shutdown();
-        log.info("list={}",count);
+        log.info("list={}",table.size());
     }
-    private static void add(){
+    private static void add(int i){
         //  先自增再返回
-        count.increment();
+        table.put(i,i);
     }
 
 }

@@ -29,10 +29,10 @@ public class AtomicIntegerFieldUpdaterExample {
 
     public static void main(String[] args) throws InterruptedException {
         if (updater.compareAndSet(example,100,200)){
-            log.info("update1 success count={}",example.getCount());
+            log.info("update1 success list={}",example.getCount());
         }
         if (updater.compareAndSet(example,100,400)){
-            log.info("update2 success count={}",example.getCount());
+            log.info("update2 success list={}",example.getCount());
         }
     }
 }

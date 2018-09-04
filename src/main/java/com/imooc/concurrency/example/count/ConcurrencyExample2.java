@@ -51,7 +51,7 @@ public class ConcurrencyExample2 {
         countDownLatch.await();
         //关闭线程池
         executorService.shutdown();
-        log.info("count={}",count.get());
+        log.info("list={}",count.get());
     }
     private static void add(){
         //  先自增再返回

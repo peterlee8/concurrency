@@ -3,7 +3,7 @@ package com.imooc.concurrency.example.threadLocal;
 /**
  * @Author peterlee
  * @Date 2018/8/31 下午3:53
- * @Describtion :
+ * @Describtion :  通过线程封闭来保证线程安全
  */
 public class RequestHolder {
 

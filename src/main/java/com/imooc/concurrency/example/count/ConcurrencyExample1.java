@@ -49,7 +49,7 @@ public class ConcurrencyExample1 {
         countDownLatch.await();
         //关闭线程池
         executorService.shutdown();
-        log.info("count={}",count);
+        log.info("list={}",count);
     }
     private static void add(){
         count++;
