@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
  * @Date 2018/8/31 下午4:10
  * @Describtion :
  */
-@Slf4j
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("preHandle");
+        System.out.printf("<--------preHandle,path={%s}%n", request.getRequestURL().toString());
         return true;
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         RequestHolder.remove();
-        log.info("afterCompletion");
+        System.out.println("-------->afterCompletion");
         return;
     }
 }
