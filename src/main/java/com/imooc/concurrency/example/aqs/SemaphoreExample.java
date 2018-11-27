@@ -13,6 +13,7 @@ import java.util.concurrent.Semaphore;
  * @Describtion :
  */
 @Slf4j
+@SuppressWarnings(value = "all")
 public class SemaphoreExample {
 
     private static int threadCount =200;

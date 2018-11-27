@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 /**
  *  java8  CompletableFuture
  */
+@SuppressWarnings(value = "all")
 public class CompletableFutureDemo2 {
 
 
