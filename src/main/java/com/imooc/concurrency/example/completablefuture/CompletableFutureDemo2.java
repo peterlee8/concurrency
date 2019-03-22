@@ -29,17 +29,18 @@ public class CompletableFutureDemo2 {
         }
         //全流式处理转换成CompletableFuture[]+组成一个无返回值CompletableFuture,join 等待执行完毕。返回结果wheComplete获取
         CompletableFuture[] cfs = taskList.stream().map(
-                integer -> CompletableFuture.supplyAsync(() -> sleep(integer), executorService)
-                        .thenApply(h -> Integer.toString(h))
-                        .whenComplete((s, e) -> {
-                            //System.out.println("任务" + s + "完成!result=" + s + "，异常 e=" + e + "," + new Date());
-                            list.add(s);
-                        })
-        ).toArray(CompletableFuture[]::new);
+                integer -> {
+                  return  CompletableFuture.supplyAsync(() -> sleep(integer), executorService)
+                            .thenApply(h -> Integer.toString(h))
+                            .whenComplete((s, e) -> {
+                                System.out.println("任务" + s + "完成!result=" + s + "，异常 e=" + e + "," + new Date());
+                                list.add(s);
+                            });
+                }).toArray(CompletableFuture[]::new);
 
         CompletableFuture.allOf(cfs).join();
 
-        System.out.println("list="+list+",耗时="+(System.currentTimeMillis()-start));
+        System.out.println("size="+list.size()+" list="+list+",耗时="+(System.currentTimeMillis()-start));
 
     }
 

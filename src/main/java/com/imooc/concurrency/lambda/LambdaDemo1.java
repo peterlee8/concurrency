@@ -1,5 +1,6 @@
 package com.imooc.concurrency.lambda;
 
+
 /**
  * @Author peterlee
  * @Date 2018/9/5 下午12:36
@@ -14,6 +15,7 @@ public class LambdaDemo1 {
         //最常见的写法
         Interface1 i3 =i -> i*2;
 
+        System.out.println();
     }
 }
 

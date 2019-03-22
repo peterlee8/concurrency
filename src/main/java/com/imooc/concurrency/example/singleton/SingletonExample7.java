@@ -19,8 +19,8 @@ public class SingletonExample7 {
      */
     private SingletonExample7(){
     }
-
     //单例的对象 ,添加了 "volatile" 可以限制指令重排
+
     private volatile static SingletonExample7 instance = null;
 
     public static SingletonExample7 getInstance(){

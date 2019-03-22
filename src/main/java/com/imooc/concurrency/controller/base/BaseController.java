@@ -2,6 +2,7 @@ package com.imooc.concurrency.controller.base;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.imooc.concurrency.util.PageData;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +53,8 @@ public class BaseController {
 	 */
 	public HttpServletRequest getRequest() {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-		
+		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+		response.addHeader("1","2");
 		return request;
 	}
 
